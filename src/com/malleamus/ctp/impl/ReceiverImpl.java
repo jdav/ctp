@@ -7,9 +7,8 @@ import java.net.SocketTimeoutException;
 import java.util.Collection;
 
 import com.malleamus.ctp.Message;
-import com.malleamus.ctp.RequestFactory;
-import com.malleamus.ctp.RequestProcessor;
 import com.malleamus.ctp.Receiver;
+import com.malleamus.ctp.RequestFactory;
 
 public class ReceiverImpl implements Receiver {
 	
@@ -35,7 +34,7 @@ public class ReceiverImpl implements Receiver {
 				socket = ss.accept();
 				if (up) {
 					//These lines will not execute if timeout on accept is exceeded
-					Message message = new MessageImpl();
+					Message message = null;
 				}
 			} catch (SocketTimeoutException ste) {
 				//Ignore

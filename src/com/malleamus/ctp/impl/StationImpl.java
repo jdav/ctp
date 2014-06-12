@@ -19,29 +19,29 @@ public class StationImpl implements Station {
 	private ConversationFactory factory = null;
 	private Sender sender = null;
 	private Receiver receiver = null;
-	private Party us = null;
-	private boolean shutdown = false;
-	private Collection<Conversation> conversationBuffer =
+	private Party associatedParty = null;
+	private boolean up = true;
+	private final Collection<Conversation> conversationBuffer =
 			new ArrayList<Conversation>();
-	private Collection<Conversation> conversations =
+	private final Collection<Conversation> conversations =
 			new ArrayList<Conversation>();
-	private Collection<Conversation> archivedConversations =
+	private final Collection<Conversation> archivedConversations =
 			new ArrayList<Conversation>();
 	
 	public StationImpl(ConversationFactory factory,
 					   Sender sender,
 					   Receiver receiver,
-					   Party us) {
+ Party associatedParty) {
 		this.factory = factory;
 		this.sender = sender;
 		this.receiver = receiver;
-		this.us = us;
+		this.associatedParty = associatedParty;
 	}
 	
 	public Conversation createConversation() throws CTPException {
 		Conversation convo = factory.create();
-		convo.addParty(us);
-		convo.setUs(us);
+		convo.addParty(associatedParty);
+		convo.setUs(associatedParty);
 		convo.setStatus(ConversationStatus.CREATED);
 		synchronized (conversationBuffer) {
 			conversationBuffer.add(convo);
@@ -51,7 +51,7 @@ public class StationImpl implements Station {
 
 	@Override
 	public void run() {
-		while (!shutdown) {
+		while (up) {
 			try {
 				//Remove terminated conversations
 				//from list of monitored 
@@ -87,4 +87,8 @@ public class StationImpl implements Station {
 		}
 	}
 
+	@Override
+	public void shutDown() {
+		up = false;
+	}
 }

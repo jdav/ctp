@@ -6,14 +6,16 @@ import com.malleamus.ctp.CTPException;
 import com.malleamus.ctp.Conversation;
 import com.malleamus.ctp.ConversationFactory;
 import com.malleamus.ctp.Party;
-import com.malleamus.diener.Server;
+import com.malleamus.ctp.Receiver;
+import com.malleamus.ctp.Sender;
 
 public class PartyImpl implements Party {
 	
 	private ConversationFactory factory = null;
 	private String host = null;
 	private int port = 0;
-	private Server listener = null;
+	private Receiver receiver = null;
+	private final Sender sender = null;
 
 	@Override
 	public void setHost(String host) throws CTPException {
@@ -36,16 +38,17 @@ public class PartyImpl implements Party {
 	}
 
 	@Override
-	public void startListening() throws CTPException {
-		listener = new Server(null, port);
-		(new Thread(listener)).start();
+	public void startReceiving() throws CTPException {
+		receiver = new ReceiverImpl(null, port);
+		(new Thread(receiver)).start();
 	}
 
 	@Override
-	public void stopListening() throws CTPException {
-		listener.shutDown();	
+	public void stopReceiving() throws CTPException {
+		receiver.shutDown();	
 	}
 	
+	@Override
 	public Conversation startConversation(ArrayList<Party> invitees) throws CTPException {
 		StartConversation sc = 
 				new StartConversation(this, invitees);
@@ -64,6 +67,7 @@ public class PartyImpl implements Party {
 			this.invitees = invitees;
 		}
 		
+		@Override
 		public void run() {
 			try {
 				Conversation convo = factory.create();

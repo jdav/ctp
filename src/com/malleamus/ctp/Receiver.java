@@ -9,4 +9,6 @@ public interface Receiver extends Runnable {
 
 	public Collection<Message> getMessages();
 
+	public void shutDown();
+
 }

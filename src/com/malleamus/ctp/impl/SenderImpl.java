@@ -2,9 +2,7 @@ package com.malleamus.ctp.impl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Queue;
 import java.util.concurrent.SynchronousQueue;
@@ -12,14 +10,12 @@ import java.util.concurrent.SynchronousQueue;
 import com.malleamus.ctp.CTPException;
 import com.malleamus.ctp.Message;
 import com.malleamus.ctp.Party;
-import com.malleamus.ctp.RequestFactory;
-import com.malleamus.ctp.RequestProcessor;
 import com.malleamus.ctp.Sender;
 
 public class SenderImpl implements Sender {
 
 	private boolean up = false;
-	private Queue<Message> queue = new SynchronousQueue<Message>();
+	private final Queue<Message> queue = new SynchronousQueue<Message>();
 
 	@Override
 	public void startUp() throws IOException {
@@ -41,6 +37,7 @@ public class SenderImpl implements Sender {
 		} while (up);
 	}
 
+	@Override
 	public void shutDown() {
 		up = false;
 	}

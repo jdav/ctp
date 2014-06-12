@@ -1,28 +1,29 @@
 package com.malleamus.ctp.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
+import com.malleamus.ctp.Acceptance;
 import com.malleamus.ctp.CTPException;
 import com.malleamus.ctp.Callback;
 import com.malleamus.ctp.Conversation;
-import com.malleamus.ctp.Invitation;
-import com.malleamus.ctp.Acceptance;
 import com.malleamus.ctp.ConversationStatus;
-import com.malleamus.ctp.Termination;
-import com.malleamus.ctp.TerminationRequest;
-import com.malleamus.ctp.TerminationResponse;
-import com.malleamus.ctp.Notification;
+import com.malleamus.ctp.Invitation;
 import com.malleamus.ctp.Message;
+import com.malleamus.ctp.Notification;
 import com.malleamus.ctp.Party;
 import com.malleamus.ctp.Request;
 import com.malleamus.ctp.Response;
+import com.malleamus.ctp.Termination;
+import com.malleamus.ctp.TerminationRequest;
+import com.malleamus.ctp.TerminationResponse;
 
 public class ConversationImpl implements Conversation {
 	
 	private ConversationStatus status = null;
 	private Party owner = null;
-	private ArrayList<Message> messages = new ArrayList<Message>();
-	private ArrayList<Party> parties = new ArrayList<Party>();
+	private final ArrayList<Message> messages = new ArrayList<Message>();
+	private final ArrayList<Party> parties = new ArrayList<Party>();
 
 	@Override
 	public Notification newNotification() throws CTPException {
@@ -139,13 +140,15 @@ public class ConversationImpl implements Conversation {
 	}
 
 	@Override
-	public void inviteAll() throws CTPException {
+	public Collection<Response> inviteAll() throws CTPException {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void invite(Party party) throws CTPException {
+	public Acceptance invite(Party party) throws CTPException {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
@@ -154,6 +157,12 @@ public class ConversationImpl implements Conversation {
 	public void disinvite(Party party) throws CTPException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void addParties(ArrayList<Party> others) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

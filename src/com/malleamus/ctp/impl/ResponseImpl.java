@@ -3,6 +3,7 @@ package com.malleamus.ctp.impl;
 import com.malleamus.ctp.CTPException;
 import com.malleamus.ctp.Conversation;
 import com.malleamus.ctp.MessageStatus;
+import com.malleamus.ctp.Party;
 import com.malleamus.ctp.Request;
 import com.malleamus.ctp.Response;
 
@@ -46,6 +47,12 @@ public class ResponseImpl implements Response {
 
 	@Override
 	public Conversation getConversation() throws CTPException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Party getResponder() throws CTPException {
 		// TODO Auto-generated method stub
 		return null;
 	}

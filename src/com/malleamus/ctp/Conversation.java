@@ -40,7 +40,5 @@ public interface Conversation {
 	public Acceptance invite(Party party) throws CTPException;
 	public void disinvite(Party party) throws CTPException;
 	public void addParties(ArrayList<Party> others);
-	public void setScript(Script script);
-	public void executeScript();
 
 }
