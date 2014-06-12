@@ -22,6 +22,12 @@ import com.malleamus.ctp.impl.RequestFactoryImpl;
 import com.malleamus.ctp.impl.SenderImpl;
 import com.malleamus.ctp.impl.StationImpl;
 
+/**
+ * Here are the code changes that we need to get.....
+ * 
+ * @author jdav
+ * 
+ */
 public class TestCTP extends TestCase {
 	
 	ConversationFactory factory = null;
